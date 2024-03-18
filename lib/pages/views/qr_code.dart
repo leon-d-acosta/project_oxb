@@ -34,7 +34,7 @@ class _qrCodeViewState extends State<qrCodeView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(onPressed: ScanCode, child: Text("Scan"),),
+            ElevatedButton(onPressed: (){ScanCode();}, child: Text("Scan"),),
             ],
         ),
       ),
