@@ -56,19 +56,7 @@ class login extends StatelessWidget {
                 //SIGN IN
                 SizedBox(height: 20),
                 signInButton(onTap: signInBtn),
-                //REGISTER
-                SizedBox(height: 30,),
-                Center(
-                  child: Text("Not a member? register now", style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold
-                  ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                registerButton(onTap: toRegisterPage),
-              ],
+                ],
             ),
           )
           ),
