@@ -16,7 +16,9 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
-int selectedIndex = 0;
+  int selectedIndex = 0;
+  TextEditingController controller = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ int selectedIndex = 0;
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
-              label: "Minhas tarefas",
+              label: "Tarefas",
               backgroundColor: colors.inverseSurface,
               ),
             BottomNavigationBarItem(
@@ -65,7 +67,7 @@ int selectedIndex = 0;
               backgroundColor: colors.inverseSurface,
               ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.image),
+              icon: Icon(Icons.add_a_photo),
               label: "Anexar Imagem",
               backgroundColor: colors.inverseSurface,
               ),
