@@ -27,6 +27,7 @@ int selectedIndex = 0;
       const  rotaView(),
       const  qrCodeView(),
       const  anexarImagemView(),
+      const dadosRotaView(),
       const  perfilView(),
       
       ];
@@ -69,15 +70,15 @@ int selectedIndex = 0;
               backgroundColor: colors.inverseSurface,
               ),
             BottomNavigationBarItem(
+            icon: Icon(Icons.description),
+            label: "Dados rota",
+            backgroundColor: colors.inverseSurface,
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
               label: "Perfil",
               backgroundColor: colors.inverseSurface,
-              ),
-              BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: "Dados rota",
-              backgroundColor: colors.inverseSurface,
-              ),
+              )
             ],
           ),
         );
