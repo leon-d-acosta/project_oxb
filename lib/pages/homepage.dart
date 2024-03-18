@@ -26,11 +26,11 @@ class _homePageState extends State<homePage> {
     final colors = Theme.of(context).colorScheme;
     final views = [
       const minhasTarefasView(),
-      const  rotaView(),
-      const  qrCodeView(),
-      const  anexarImagemView(),
+      const rotaView(),
+      const qrCodeView(),
+      const anexarImagemView(),
       const dadosRotaView(),
-      const  perfilView(),
+      const perfilView(),
       
       ];
 

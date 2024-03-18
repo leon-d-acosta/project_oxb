@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:project1/pages/properties/register_button.dart';
 import 'package:project1/pages/properties/sign_in_button.dart';
 import 'package:project1/pages/properties/textfield.dart';
 
