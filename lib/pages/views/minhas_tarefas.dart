@@ -54,6 +54,59 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
                   )
                 ),
                 height: 500,
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10,),
+                      Text(
+                        "Nombre"/*$nome*/,
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold
+                        )
+                      ),
+                      SizedBox(height: 10,),
+                      Divider(thickness: 1, color: colors.onSurface,),
+                      Text(
+                        "Rota"/*$rota*/,
+                        style: TextStyle(
+                          fontSize: 25,
+                        )
+                      ),
+                      Text(
+                        "Carro"/*carro*/,
+                        style: TextStyle(
+                          fontSize: 20,
+                        )
+                      ),
+                      Text(
+                        "Motorista"/*motorista*/,
+                        style: TextStyle(
+                          fontSize: 20,
+                        )
+                      ),
+                      Text(
+                        "Data"/*Data*/,
+                        style: TextStyle(
+                          fontSize: 25,
+                        )
+                      ),
+                      Text(
+                        "Estado"/*Estado*/,
+                        style: TextStyle(
+                          fontSize: 20,
+                        )
+                      ),
+                      Divider(thickness: 1, color: colors.onSurface,),
+                      Text(
+                        "Observações"/*Observações*/,
+                        style: TextStyle(
+                          fontSize: 15,
+                        )
+                      )
+                    ],
+                  ),
+                ),
               ),
 
             ],
