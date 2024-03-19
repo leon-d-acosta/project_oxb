@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:project1/pages/properties/register_button.dart';
 import 'package:project1/pages/properties/sign_in_button.dart';
-import 'package:project1/pages/properties/textfield.dart';
-
 
 class login extends StatelessWidget {
   login({super.key});
@@ -26,7 +24,7 @@ class login extends StatelessWidget {
               children: [
                 //ICONO
                 SizedBox(height: 60),
-                Icon(Icons.account_circle_rounded, size: 150, color: Colors.white,),
+                Icon(Icons.account_circle_rounded, size: 150, color: colors.secondaryContainer,),
                 //LOGIN TEXT
                 SizedBox(height: 15,),
                 Text("L O G I N", style: TextStyle(
@@ -36,24 +34,54 @@ class login extends StatelessWidget {
                 ),),
                 //MAIL
                 SizedBox(height: 50),
-                myTextField(
-                  controller: mailController,
-                  hintText: "mail@example.com",
-                  obscureText: false,
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  margin: const EdgeInsets.only(left: 40, right: 40),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: colors.secondaryContainer,
+                  ),
+                  child: TextFormField(
+                    controller: mailController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      border: InputBorder.none,
+                      filled: true,
+                      hintText: "mail@example.com",
+                    ),
+                  ),
                 ),
                 //PASSWORD
-                SizedBox(height: 10,),
-                myTextField(
-                  controller: passwordController,
-                  hintText: "password",
-                  obscureText: true,
+                SizedBox(height: 25,),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  margin: const EdgeInsets.only(left: 40, right: 40),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: colors.secondaryContainer,
+                  ),
+                  child: TextFormField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.lock),
+                      border: InputBorder.none,
+                      filled: true,
+                      hintText: "password",
+                    ),
+                  ),
                 ),
                 //FORGOT PASSWORD
-                SizedBox(height: 10,),
-                registerButton(onTap: forgotBTN),
-                //SIGN IN
-                SizedBox(height: 20),
-                signInButton(onTap: signInBtn),
+                SizedBox(height: 25),
+                registerButton(
+                onTap: forgotBTN,
+                ),
+              // SIGN IN
+              SizedBox(height: 20),
+              signInButton(
+                onTap: signInBtn
+                )
                 ],
             ),
           )

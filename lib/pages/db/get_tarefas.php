@@ -18,7 +18,8 @@ while($resultsFrom = $statement -> fetch()){
             'data'=>$resultsFrom['data'],
             'estado'=>$resultsFrom['estado'],
             'observacoes'=>$resultsFrom['observacoes'],
-            'id'=>$resultsFrom['id']
+            'id_tarefa'=>$resultsFrom['id_tarefa'],
+            'user_id'=>$resultsFrom['user_id']
         )
         );
 };
