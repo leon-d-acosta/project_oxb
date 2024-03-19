@@ -19,116 +19,101 @@ class minhasTarefasView extends StatefulWidget {
 class _minhasTarefasViewState extends State<minhasTarefasView> {
 
   getMethod()async{
-    String url = 'https://10.0.0.51/xampp/project_oxb-2/lib/pages/db/get_tarefas.php';
-    var res = await http.get(Uri.decodeFull(Uri.parse(url)) as Uri, headers: {"accept":"application/json"});
+    //final List<dynamic> lista = [{"nome": "leonA"}];
+    //http://localhost/xampp/project_oxb-2/lib/pages/db/get_tarefas.php
+    var url = Uri.parse('http://10.0.0.51/xampp/project_oxb-2/lib/pages/db/get_tarefas.php');
+    var res = await http.get(url);
     var responseBody=json.decode(res.body);
-    print(responseBody);
     return responseBody;
   }
 
 
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    return Container(
-      height: double.infinity,
-      child: Center(
-        child: Container(
-          margin: EdgeInsets.all(15),
-          child: FutureBuilder(
-            future: getMethod(), 
-            builder:(BuildContext context, AsyncSnapshot snapshot) {
-              List? snap = snapshot.data;
-              if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text("error fetching data"),
-                );
-              }
-              return ListView.builder(
-                itemCount: snap!.length,
-                itemBuilder: (context,index){
-                  return ListView(
-            children: [
-
-              Container(
-                decoration: BoxDecoration(
-                  color: colors.secondaryContainer,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(
-                    width: 1,
-                    style: BorderStyle.solid,
-                  )
-                ),
-                height: 500,
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10,),
-                      Text(
-                        "${snap[index]['nome']}"/*$nome*/,
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold
-                        )
-                      ),
-                      SizedBox(height: 10,),
-                      Divider(thickness: 1, color: colors.onSurface,),
-                      Text(
-                        "Carro"/*carro*/,
-                        style: TextStyle(
-                          fontSize: 20,
-                        )
-                      ),
-                      Text(
-                        "Motorista"/*motorista*/,
-                        style: TextStyle(
-                          fontSize: 20,
-                        )
-                      ),
-                      Text(
-                        "Data"/*Data*/,
-                        style: TextStyle(
-                          fontSize: 25,
-                        )
-                      ),
-                      Text(
-                        "Rota"/*$rota*/,
-                        style: TextStyle(
-                          fontSize: 25,
-                        )
-                      ),
-                      Text(
-                        "Estado"/*Estado*/,
-                        style: TextStyle(
-                          fontSize: 20,
-                        )
-                      ),
-                      Divider(thickness: 1, color: colors.onSurface,),
-                      Text(
-                        "Observações"/*Observações*/,
-                        style: TextStyle(
-                          fontSize: 15,
-                        )
-                      )
-                    ],
-                  ),
-                ),
-              ),
-
-            ],
-          );
-                },
+ @override
+Widget build(BuildContext context) {
+  final colors = Theme.of(context).colorScheme;
+  return Container(
+    height: double.infinity,
+    child: Center(
+      child: Container(
+        margin: EdgeInsets.all(15),
+        child: FutureBuilder(
+          future: getMethod(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
               );
-            },
-            )
-          
+            }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("error fetching data"),
+              );
+            }
+            List snap = snapshot.data;
+            return ListView.builder(
+              itemCount: snap.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: colors.secondaryContainer,
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      width: 1,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                  height: 400,
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Text(
+                          "${snap[index]['nome']}",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Divider(thickness: 1, color: colors.onSurface),
+                        Text(
+                          "Carro: ${snap[index]['carro']}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Text(
+                          "Motorista: ${snap[index]['motorista']}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Text(
+                          "Data: ${snap[index]['data']}",
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        Text("Rota:", style: TextStyle(fontSize: 25, fontStyle: FontStyle.italic),),
+                        Text(
+                          "${snap[index]['rota']}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Text(
+                          "Estado: ${snap[index]['estado']}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Divider(thickness: 1, color: colors.onSurface),
+                        Text("Observaçoes:"),
+                        Text(
+                          "${snap[index]['observacoes']}",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
         ),
-        ),
-    );
-  }
-}
+      ),
+    ),
+  );
+}}
