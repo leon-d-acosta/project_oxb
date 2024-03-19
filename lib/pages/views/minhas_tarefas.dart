@@ -1,5 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, non_constant_identifier_names, unnecessary_import
 
+
+//vamos viendo
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,24 +15,13 @@ class minhasTarefasView extends StatefulWidget {
   State<minhasTarefasView> createState() => _minhasTarefasViewState();
 }
 
+
 class _minhasTarefasViewState extends State<minhasTarefasView> {
 
-  List listTarefas = List.empty(growable: true);
-  /*getAllData()async{
-    var response = await http.get("url");
-    if(response.statusCode == 200){
-      setState(() {
-        listTarefas = json.decode(response.body);
-      });
-      return listTarefas;
-    }
+  getMethod()async{
+    String url = '';
   }
 
-  @override
-  void initState() {
-    super.initState();
-    getAllData();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +59,6 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
                       SizedBox(height: 10,),
                       Divider(thickness: 1, color: colors.onSurface,),
                       Text(
-                        "Rota"/*$rota*/,
-                        style: TextStyle(
-                          fontSize: 25,
-                        )
-                      ),
-                      Text(
                         "Carro"/*carro*/,
                         style: TextStyle(
                           fontSize: 20,
@@ -87,6 +72,12 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
                       ),
                       Text(
                         "Data"/*Data*/,
+                        style: TextStyle(
+                          fontSize: 25,
+                        )
+                      ),
+                      Text(
+                        "Rota"/*$rota*/,
                         style: TextStyle(
                           fontSize: 25,
                         )
