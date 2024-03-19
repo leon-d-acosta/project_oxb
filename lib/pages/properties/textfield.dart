@@ -17,22 +17,24 @@ class myTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  child: TextField(
-                    controller: controller,
-                    obscureText: obscureText,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey.shade500)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      hintText: hintText
-                    ),
-                  ),
-                  );
-  }
+      padding: EdgeInsets.symmetric(horizontal: 30.0),
+      child: TextField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Colors.white)
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Colors.grey.shade500)
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          hintText: hintText
+        ),
+      ),
+      );
+}
 }
