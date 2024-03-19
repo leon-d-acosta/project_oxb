@@ -19,7 +19,11 @@ class minhasTarefasView extends StatefulWidget {
 class _minhasTarefasViewState extends State<minhasTarefasView> {
 
   getMethod()async{
-    String url = '';
+    String url = 'https://10.0.0.51/xampp/project_oxb-2/lib/pages/db/get_tarefas.php';
+    var res = await http.get(Uri.decodeFull(Uri.parse(url)) as Uri, headers: {"accept":"application/json"});
+    var responseBody=json.decode(res.body);
+    print(responseBody);
+    return responseBody;
   }
 
 
@@ -31,8 +35,24 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
       child: Center(
         child: Container(
           margin: EdgeInsets.all(15),
-          
-          child: ListView(
+          child: FutureBuilder(
+            future: getMethod(), 
+            builder:(BuildContext context, AsyncSnapshot snapshot) {
+              List? snap = snapshot.data;
+              if(snapshot.connectionState == ConnectionState.waiting){
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text("error fetching data"),
+                );
+              }
+              return ListView.builder(
+                itemCount: snap!.length,
+                itemBuilder: (context,index){
+                  return ListView(
             children: [
 
               Container(
@@ -50,7 +70,7 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
                     children: [
                       SizedBox(height: 10,),
                       Text(
-                        "Nombre"/*$nome*/,
+                        "${snap[index]['nome']}"/*$nome*/,
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold
@@ -101,7 +121,12 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
               ),
 
             ],
-          ),
+          );
+                },
+              );
+            },
+            )
+          
         ),
         ),
     );
