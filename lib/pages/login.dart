@@ -13,6 +13,7 @@ class login extends StatelessWidget {
   void signInBtn(){}
   void forgotBTN(){}
 
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -34,21 +35,29 @@ class login extends StatelessWidget {
                 ),),
                 //MAIL
                 SizedBox(height: 50),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  margin: const EdgeInsets.only(left: 40, right: 40),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: colors.secondaryContainer,
-                  ),
-                  child: TextFormField(
-                    controller: mailController,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.person),
-                      border: InputBorder.none,
-                      filled: true,
-                      hintText: "mail@example.com",
+                Form(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    margin: const EdgeInsets.only(left: 40, right: 40),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: colors.secondaryContainer,
+                    ),
+                    child: TextFormField(
+                      validator:(value) {
+                        if (value!.isEmpty) {
+                          return "mail é requerido";
+                        }
+                        return null;
+                      },
+                      controller: mailController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.person),
+                        border: InputBorder.none,
+                        filled: true,
+                        hintText: "mail@example.com",
+                      ),
                     ),
                   ),
                 ),
@@ -62,6 +71,12 @@ class login extends StatelessWidget {
                     color: colors.secondaryContainer,
                   ),
                   child: TextFormField(
+                    validator:(value) {
+                        if (value!.isEmpty) {
+                          return "senha é requerida";
+                        }
+                        return null;
+                      },
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -80,7 +95,11 @@ class login extends StatelessWidget {
               // SIGN IN
               SizedBox(height: 20),
               signInButton(
-                onTap: signInBtn
+                onTap: (){
+                  if(formKey.currentState!.validate()){
+                    
+                  }
+                }
                 )
                 ],
             ),
