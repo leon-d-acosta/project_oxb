@@ -119,8 +119,8 @@ class login extends StatelessWidget {
                 ),
               // SIGN IN
               SizedBox(height: 20),
-              signInButton(
-                onTap: loginFunction,
+              TextButton(
+                onPressed: ()=> loginFunction, child: Text("sig in"),
                 )
                 ],
             ),
