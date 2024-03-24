@@ -21,7 +21,7 @@ class _minhasTarefasViewState extends State<minhasTarefasView> {
   getMethod()async{
     //final List<dynamic> lista = [{"nome": "leonA"}];
     //http://localhost/xampp/project_oxb-2/lib/pages/db/get_tarefas.php
-    var url = Uri.parse('http://10.0.0.51/xampp/project_oxb-2/lib/pages/db/get_tarefas.php');
+    var url = Uri.parse('http://localhost/xampp/project_oxb-2/lib/pages/db/get_tarefas.php');
     var res = await http.get(url);
     var responseBody=json.decode(res.body);
     return responseBody;
