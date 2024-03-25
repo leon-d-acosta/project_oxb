@@ -13,9 +13,7 @@ class PerfilView extends StatefulWidget {
 }
 
 class _PerfilViewState extends State<PerfilView> {
-  
-  void change(){
-  }
+
   void ChangeNome() {
   }
 
@@ -63,24 +61,32 @@ class _PerfilViewState extends State<PerfilView> {
               return Center(
                 child: Column(
                   children: [
-                    SizedBox(height: 175,),
+                    SizedBox(height: 125),
                     Icon(Icons.person, color: Colors.white, size: 125,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('$snap[nome]', style: TextStyle(color: Colors.white),),
-                        ElevatedButton(onPressed: ChangeNome, child: Icon(Icons.edit)),
+                        Row(
+                          children: [
+                            Text(snap[0]['nome'], style: TextStyle(color: Colors.white),),
+                            ElevatedButton(onPressed: ChangeNome, child: Icon(Icons.edit)),
+                          ]
+                        ),
 
-                        Text('$snap[email]', style: TextStyle(color: Colors.white),),
-                        ElevatedButton(onPressed: ChangeEmail, child: Icon(Icons.edit)),
+                        Row(
+                          children: [
+                            Text(snap[0]['email'], style: TextStyle(color: Colors.white, fontSize: 21),),
+                            ElevatedButton(onPressed: ChangeEmail, child: Icon(Icons.edit)),    
+                          ],
+                        ),
 
-                        Text('$snap[morada]', style: TextStyle(color: Colors.white),),
+                        Text(snap[0]['morada'], style: TextStyle(color: Colors.white),),
                         ElevatedButton(onPressed: ChangeMorada, child: Icon(Icons.edit)),
 
-                        Text('$snap[localidade]', style: TextStyle(color: Colors.white),),
+                        Text(snap[0]['localidade'], style: TextStyle(color: Colors.white),),
                         ElevatedButton(onPressed: ChangeLocalidade, child: Icon(Icons.edit)),
 
-                        Text('$snap[codigo_postal]', style: TextStyle(color: Colors.white),),
+                        Text(snap[0]['codigo_postal'], style: TextStyle(color: Colors.white),),
                         ElevatedButton(onPressed: ChangeCodigoPostal, child: Icon(Icons.edit)),
                       ],
                     )
