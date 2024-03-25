@@ -13,8 +13,26 @@ class PerfilView extends StatefulWidget {
 }
 
 class _PerfilViewState extends State<PerfilView> {
+  
+  void change(){
+  }
+  void ChangeNome() {
+  }
+
+  void ChangeEmail() {
+  }
+
+  void ChangeMorada() {
+  }
+
+  void ChangeLocalidade() {
+  }
+
+  void ChangeCodigoPostal() {
+  }
+
   Future<dynamic> _getPerfil() async {
-    var url = Uri.parse('http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/login.php');
+    var url = Uri.parse('http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/perfil.php');
     var response = await http.get(url);
     var responseBody = json.decode(response.body);
     return responseBody;
@@ -42,56 +60,32 @@ class _PerfilViewState extends State<PerfilView> {
                 );
               }
               List snap = snapshot.data;
-              return ListView.builder(
-                itemCount: snap.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      color: colors.secondaryContainer,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        width: 1,
-                        style: BorderStyle.solid,
-                      ),
-                    ),
-                    height: 400,
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 10),
-                          Text(
-                            "${snap[index]['email']}",
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Divider(thickness: 1, color: colors.onSurface),
-                          Text(
-                            "Carro: ${snap[index]['nome']}",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          Text(
-                            "Motorista: ${snap[index]['morada']}",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          Text(
-                            "Data: ${snap[index]['localidade']}",
-                            style: TextStyle(fontSize: 25),
-                          ),
-                          const Text("Rota:", style: TextStyle(fontSize: 25, fontStyle: FontStyle.italic),),
-                          Text(
-                            "${snap[index]['codigo_postal']}",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+              return Center(
+                child: Column(
+                  children: [
+                    SizedBox(height: 175,),
+                    Icon(Icons.person, color: Colors.white, size: 125,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('$snap[nome]', style: TextStyle(color: Colors.white),),
+                        ElevatedButton(onPressed: ChangeNome, child: Icon(Icons.edit)),
+
+                        Text('$snap[email]', style: TextStyle(color: Colors.white),),
+                        ElevatedButton(onPressed: ChangeEmail, child: Icon(Icons.edit)),
+
+                        Text('$snap[morada]', style: TextStyle(color: Colors.white),),
+                        ElevatedButton(onPressed: ChangeMorada, child: Icon(Icons.edit)),
+
+                        Text('$snap[localidade]', style: TextStyle(color: Colors.white),),
+                        ElevatedButton(onPressed: ChangeLocalidade, child: Icon(Icons.edit)),
+
+                        Text('$snap[codigo_postal]', style: TextStyle(color: Colors.white),),
+                        ElevatedButton(onPressed: ChangeCodigoPostal, child: Icon(Icons.edit)),
+                      ],
+                    )
+                  ],
+                ),
               );
             },
           ),
@@ -99,4 +93,5 @@ class _PerfilViewState extends State<PerfilView> {
       ),
     );
   }
+
 }

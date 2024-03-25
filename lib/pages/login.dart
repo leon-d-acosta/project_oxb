@@ -14,7 +14,6 @@ class Login extends StatelessWidget {
   void forgotButton() {}
 
   Future<void> loginFunction(BuildContext context) async {
-    print("login called");
     print(emailController.text);
     print(passController.text);
 
