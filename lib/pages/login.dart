@@ -19,7 +19,7 @@ class login extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
 
   Future<void> loginFunction(BuildContext context)async{
-    var url = Uri.parse('http://localhost/xampp/project_oxb-2/lib/pages/db/login.php');
+    var url = Uri.parse('http://localhost/xampp/project_oxb-2/project1/lib/pages/db/login.php');
     final response = await http.post(
       url, 
       body: {
@@ -119,9 +119,9 @@ class login extends StatelessWidget {
                 ),
               // SIGN IN
               SizedBox(height: 20),
-              TextButton(
-                onPressed: ()=> loginFunction, child: Text("sig in"),
-                )
+              ElevatedButton(
+                onPressed: ()=>loginFunction(context), 
+                child: Text("SIGN IN"),)
                 ],
             ),
           )
