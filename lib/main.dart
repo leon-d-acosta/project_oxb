@@ -9,16 +9,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: login(),
+      home: Login(),
       routes: {
-        '/login': (context) => login(),
-        '/homepage': (context) => homePage()
+        '/login': (context) => Login(),
+        '/homepage': (context) => HomePage(),
       },
     );
   }

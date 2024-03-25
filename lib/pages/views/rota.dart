@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class rotaView extends StatefulWidget {
-  const rotaView({super.key});
+class RotaView extends StatefulWidget {
+  const RotaView({Key? key});
 
   @override
-  State<rotaView> createState() => _rotaViewState();
+  State<RotaView> createState() => _RotaViewState();
 }
 
-class _rotaViewState extends State<rotaView> {
+class _RotaViewState extends State<RotaView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +15,11 @@ class _rotaViewState extends State<rotaView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Rota", style: TextStyle(color: Colors.white),)
-            ],
+            Text(
+              "Rota",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
     );

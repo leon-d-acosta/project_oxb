@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class anexarImagemView extends StatefulWidget {
-  const anexarImagemView({super.key});
+class AnexarImagemView extends StatefulWidget {
+  const AnexarImagemView({Key? key});
 
   @override
-  State<anexarImagemView> createState() => _anexarImagemViewState();
+  State<AnexarImagemView> createState() => _AnexarImagemViewState();
 }
 
-class _anexarImagemViewState extends State<anexarImagemView> {
+class _AnexarImagemViewState extends State<AnexarImagemView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +15,11 @@ class _anexarImagemViewState extends State<anexarImagemView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Anexar imagem", style: TextStyle(color: Colors.white),)
-            ],
+            Text(
+              "Anexar imagen",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
     );

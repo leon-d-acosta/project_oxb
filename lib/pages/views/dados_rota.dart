@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class dadosRotaView extends StatefulWidget {
-  const dadosRotaView({super.key});
+class DadosRotaView extends StatefulWidget {
+  const DadosRotaView({Key? key});
 
   @override
-  State<dadosRotaView> createState() => _dadosRotaViewState();
+  State<DadosRotaView> createState() => _DadosRotaViewState();
 }
 
-class _dadosRotaViewState extends State<dadosRotaView> {
+class _DadosRotaViewState extends State<DadosRotaView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,8 +17,11 @@ class _dadosRotaViewState extends State<dadosRotaView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Dados rota", style: TextStyle(color: Colors.white),)
-            ],
+            Text(
+              "Dados rota",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
     );

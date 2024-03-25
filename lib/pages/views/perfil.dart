@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class perfilView extends StatefulWidget {
-  const perfilView({super.key});
+class PerfilView extends StatefulWidget {
+  const PerfilView({Key? key});
 
   @override
-  State<perfilView> createState() => _perfilViewState();
+  State<PerfilView> createState() => _PerfilViewState();
 }
 
-class _perfilViewState extends State<perfilView> {
+class _PerfilViewState extends State<PerfilView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,8 +17,11 @@ class _perfilViewState extends State<perfilView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Meu perfil", style: TextStyle(color: Colors.white),)
-            ],
+            Text(
+              "Mi perfil",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
     );

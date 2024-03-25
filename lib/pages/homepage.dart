@@ -8,81 +8,78 @@ import 'package:project1/pages/views/qr_code.dart';
 import 'package:project1/pages/views/rota.dart';
 import 'package:project1/pages/views/dados_rota.dart';
 
-class homePage extends StatefulWidget {
-  const homePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key});
 
   @override
-  State<homePage> createState() => _homePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _homePageState extends State<homePage> {
-  int selectedIndex = 0;
-  TextEditingController controller = TextEditingController();
-
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
-    final views = [
-      const minhasTarefasView(),
-      const rotaView(),
-      const qrCodeView(),
-      const anexarImagemView(),
-      const dadosRotaView(),
-      const perfilView(),
-      
-      ];
+    final views = const [
+      MinhasTarefasView(),
+      RotaView(),
+      QrCodeView(),
+      AnexarImagemView(),
+      DadosRotaView(),
+      PerfilView(),
+    ];
 
     return Scaffold(
       body: IndexedStack(
-        index: selectedIndex,
+        index: _selectedIndex,
         children: views,
       ),
-      backgroundColor: colors.onSurface,  
-      //MENU
+      backgroundColor: colors.onSurface,
+      // MENU
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        currentIndex: selectedIndex,
+        currentIndex: _selectedIndex,
         onTap: (value) {
           setState(() {
-            selectedIndex = value;
+            _selectedIndex = value;
           });
         },
         elevation: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: "Tarefas",
-              backgroundColor: colors.inverseSurface,
-              ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.room),
-              label: "Rota",
-              backgroundColor: colors.inverseSurface,
-              ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code_scanner),
-              label: "Ler QR-Code",
-              backgroundColor: colors.inverseSurface,
-              ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_a_photo),
-              label: "Anexar Imagem",
-              backgroundColor: colors.inverseSurface,
-              ),
-            BottomNavigationBarItem(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: "Tarefas",
+            backgroundColor: colors.inverseSurface,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.room),
+            label: "Rota",
+            backgroundColor: colors.inverseSurface,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code_scanner),
+            label: "Ler QR-Code",
+            backgroundColor: colors.inverseSurface,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_a_photo),
+            label: "Anexar Imagem",
+            backgroundColor: colors.inverseSurface,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.description),
             label: "Dados rota",
             backgroundColor: colors.inverseSurface,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: "Perfil",
-              backgroundColor: colors.inverseSurface,
-              )
-            ],
           ),
-        );
-}
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: "Perfil",
+            backgroundColor: colors.inverseSurface,
+          )
+        ],
+      ),
+    );
+  }
 }

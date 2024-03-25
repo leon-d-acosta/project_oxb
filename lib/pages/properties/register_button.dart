@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-class registerButton extends StatelessWidget {
+class RegisterButton extends StatelessWidget {
   final Function()? onTap;
-  const registerButton({super.key, required this.onTap});
-
-
+  const RegisterButton({Key? key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class registerButton extends StatelessWidget {
           border: Border.all(
             color: Colors.white,
             style: BorderStyle.solid,
-            width: 1
+            width: 1,
           ),
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
@@ -29,10 +27,10 @@ class registerButton extends StatelessWidget {
               Colors.black26,
               Colors.black45,
               Colors.black54,
-              Colors.black87
-            ]
-            ),
-          borderRadius: BorderRadius.circular(100)
+              Colors.black87,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(100),
         ),
         child: Center(
           child: Text(
@@ -40,11 +38,11 @@ class registerButton extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 12,
-              fontWeight: FontWeight.bold
+              fontWeight: FontWeight.bold,
             ),
-            ),
+          ),
         ),
       ),
     );
-}
+  }
 }

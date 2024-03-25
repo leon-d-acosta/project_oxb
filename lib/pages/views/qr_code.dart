@@ -4,23 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
-class qrCodeView extends StatefulWidget {
-  const qrCodeView({super.key});
+class QrCodeView extends StatefulWidget {
+  const QrCodeView({Key? key});
 
   @override
-  State<qrCodeView> createState() => _qrCodeViewState();
+  State<QrCodeView> createState() => _QrCodeViewState();
 }
+
+class _QrCodeViewState extends State<QrCodeView> {
   String _scanResult = "";
 
-class _qrCodeViewState extends State<qrCodeView> {
-  Future<void> ScanCode() async {
+  Future<void> _scanCode() async {
     String barcodeScanRes;
-    try{
-    barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-      "Colors.red", "cancel", true, ScanMode.QR);
-
-    } on PlatformException{
-      barcodeScanRes = "Failed to scan";
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666", // Color de la barra superior de escaneo
+        "Cancelar", // Texto del botón de cancelar
+        true, // Modo de escaneo: QR, Barcode o ambos
+        ScanMode.QR, // Modo de escaneo (QR, Barcode)
+      );
+    } on PlatformException {
+      barcodeScanRes = "Fallo al escanear";
     }
     setState(() {
       _scanResult = barcodeScanRes;
@@ -34,8 +38,12 @@ class _qrCodeViewState extends State<qrCodeView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(onPressed: (){ScanCode();}, child: Text("Scan"),),
-            ],
+            ElevatedButton(
+              onPressed: _scanCode,
+              child: Text("Escanear"),
+            ),
+            Text(_scanResult),
+          ],
         ),
       ),
     );

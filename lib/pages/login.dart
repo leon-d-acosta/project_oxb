@@ -5,66 +5,64 @@ import 'package:http/http.dart' as http;
 import 'package:project1/pages/homepage.dart';
 import 'package:project1/pages/properties/register_button.dart';
 
-class login extends StatelessWidget {
-  login({super.key});
+class Login extends StatelessWidget {
+  Login({Key? key});
 
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
-  void forgotBTN() {}
+  void forgotButton() {}
 
   Future<void> loginFunction(BuildContext context) async {
     print("login called");
     print(emailController.text);
     print(passController.text);
-  // Verificar si los campos están vacíos
-  if (emailController.text.isEmpty || passController.text.isEmpty) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Datos insuficientes'),
-    ));
-    return; // Salir de la función si faltan datos
-  }
 
-  var url = Uri.parse(
-    'http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/login.php');
-  final response = await http.post(
-    url,
-    body: {
-      'email': emailController.text,
-      'pass': passController.text,
-    },
-  );
-
-  if (response.statusCode == 200) {
-    var decodedData;
-    try {
-    //print(decodedData);
-      decodedData = json.decode(response.body);
-    } catch (e) {
-      print('Error al decodificar la respuesta del servidor: $e');
+    // Verificar si los campos están vacíos
+    if (emailController.text.isEmpty || passController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Datos insuficientes'),
+      ));
+      return; // Salir de la función si faltan datos
     }
-    if(decodedData != null && decodedData['success'] != null){
-      if (decodedData['success']) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const homePage()),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(decodedData['message'] ?? 'Error desconocido'),
-        ));
+
+    var url = Uri.parse('http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/login.php');
+    final response = await http.post(
+      url,
+      body: {
+        'email': emailController.text,
+        'pass': passController.text,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      var decodedData;
+      try {
+        decodedData = json.decode(response.body);
+      } catch (e) {
+        print('Error al decodificar la respuesta del servidor: $e');
       }
-
+      if (decodedData != null && decodedData['success'] != null) {
+        if (decodedData['success']) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(decodedData['message'] ?? 'Error desconocido'),
+          ));
+        }
+      } else {
+        print("aqui rompe");
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error de conexión: ${response.statusCode} - ${response.reasonPhrase}'),
+      ));
+      print('Error de conexión: ${response.statusCode} - ${response.reasonPhrase}');
     }
-    else{
-      print("aqui rompe");
-    }
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Error de conexión: ${response.statusCode} - ${response.reasonPhrase}')));
-    print('Error de conexión: ${response.statusCode} - ${response.reasonPhrase}');
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +73,10 @@ class login extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              //ICONO
+              // ICONO
               SizedBox(height: 60),
-              Icon(Icons.account_circle_rounded,
-                  size: 150, color: colors.secondaryContainer),
-              //LOGIN TEXT
+              Icon(Icons.account_circle_rounded, size: 150, color: colors.secondaryContainer),
+              // LOGIN TEXT
               SizedBox(height: 15),
               Text(
                 "L O G I N",
@@ -89,12 +86,11 @@ class login extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              //MAIL
+              // MAIL
               SizedBox(height: 50),
               Form(
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   margin: const EdgeInsets.only(left: 40, right: 40),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -112,11 +108,10 @@ class login extends StatelessWidget {
                   ),
                 ),
               ),
-              //pass
+              // PASS
               SizedBox(height: 25),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 margin: const EdgeInsets.only(left: 40, right: 40),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -133,10 +128,10 @@ class login extends StatelessWidget {
                   ),
                 ),
               ),
-              //FORGOT pass
+              // FORGOT PASS
               SizedBox(height: 25),
-              registerButton(
-                onTap: forgotBTN,
+              RegisterButton(
+                onTap: forgotButton,
               ),
               // SIGN IN
               SizedBox(height: 20),
