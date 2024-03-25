@@ -1,131 +1,153 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, use_key_in_widget_constructors
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:project1/pages/properties/register_button.dart';
-import 'package:project1/pages/properties/sign_in_button.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:project1/pages/homepage.dart';
+import 'package:project1/pages/properties/register_button.dart';
 
 class login extends StatelessWidget {
   login({super.key});
 
-  final mailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
 
-  void forgotBTN(){}
+  void forgotBTN() {}
 
-  final formKey = GlobalKey<FormState>();
+  Future<void> loginFunction(BuildContext context) async {
+    print("login called");
+    print(emailController.text);
+    print(passController.text);
+  // Verificar si los campos están vacíos
+  if (emailController.text.isEmpty || passController.text.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('Datos insuficientes'),
+    ));
+    return; // Salir de la función si faltan datos
+  }
 
-  Future<void> loginFunction(BuildContext context)async{
-    var url = Uri.parse('http://localhost/xampp/project_oxb-2/project1/lib/pages/db/login.php');
-    final response = await http.post(
-      url, 
-      body: {
-        'email': mailController.text,
-        'password': passwordController.text,
-      },
-    );
+  var url = Uri.parse(
+    'http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/login.php');
+  final response = await http.post(
+    url,
+    body: {
+      'email': emailController.text,
+      'pass': passController.text,
+    },
+  );
 
-    final responseData = json.decode(response.body);
-    if (responseData['success']) {
-      Navigator.pushReplacementNamed(context, '/homepage');
+  if (response.statusCode == 200) {
+    var decodedData;
+    try {
+    //print(decodedData);
+      decodedData = json.decode(response.body);
+    } catch (e) {
+      print('Error al decodificar la respuesta del servidor: $e');
+    }
+    if(decodedData != null && decodedData['success'] != null){
+      if (decodedData['success']) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const homePage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(decodedData['message'] ?? 'Error desconocido'),
+        ));
+      }
+
     }
     else{
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(responseData['message']))
-      );
+      print("aqui rompe");
     }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('Error de conexión: ${response.statusCode} - ${response.reasonPhrase}')));
+    print('Error de conexión: ${response.statusCode} - ${response.reasonPhrase}');
   }
+}
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
-        backgroundColor: colors.onSurface,
-        body: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                //ICONO
-                SizedBox(height: 60),
-                Icon(Icons.account_circle_rounded, size: 150, color: colors.secondaryContainer,),
-                //LOGIN TEXT
-                SizedBox(height: 15,),
-                Text("L O G I N", style: TextStyle(
+      backgroundColor: colors.onSurface,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              //ICONO
+              SizedBox(height: 60),
+              Icon(Icons.account_circle_rounded,
+                  size: 150, color: colors.secondaryContainer),
+              //LOGIN TEXT
+              SizedBox(height: 15),
+              Text(
+                "L O G I N",
+                style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                ),),
-                //MAIL
-                SizedBox(height: 50),
-                Form(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                    margin: const EdgeInsets.only(left: 40, right: 40),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: colors.secondaryContainer,
-                    ),
-                    child: TextFormField(
-                      validator:(value) {
-                        if (value!.isEmpty) {
-                          return "mail é requerido";
-                        }
-                        return null;
-                      },
-                      controller: mailController,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        icon: Icon(Icons.person),
-                        border: InputBorder.none,
-                        filled: true,
-                        hintText: "mail@example.com",
-                      ),
-                    ),
-                  ),
                 ),
-                //PASSWORD
-                SizedBox(height: 25,),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              ),
+              //MAIL
+              SizedBox(height: 50),
+              Form(
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   margin: const EdgeInsets.only(left: 40, right: 40),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: colors.secondaryContainer,
                   ),
-                  child: TextFormField(
-                    validator:(value) {
-                        if (value!.isEmpty) {
-                          return "senha é requerida";
-                        }
-                        return null;
-                      },
-                    controller: passwordController,
-                    obscureText: true,
+                  child: TextField(
+                    controller: emailController,
+                    obscureText: false,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
+                      icon: Icon(Icons.person),
                       border: InputBorder.none,
                       filled: true,
-                      hintText: "password",
+                      hintText: "mail@example.com",
                     ),
                   ),
                 ),
-                //FORGOT PASSWORD
-                SizedBox(height: 25),
-                registerButton(
-                onTap: forgotBTN,
+              ),
+              //pass
+              SizedBox(height: 25),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                margin: const EdgeInsets.only(left: 40, right: 40),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: colors.secondaryContainer,
                 ),
+                child: TextField(
+                  controller: passController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.lock),
+                    border: InputBorder.none,
+                    filled: true,
+                    hintText: "pass",
+                  ),
+                ),
+              ),
+              //FORGOT pass
+              SizedBox(height: 25),
+              registerButton(
+                onTap: forgotBTN,
+              ),
               // SIGN IN
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: ()=>loginFunction(context), 
-                child: Text("SIGN IN"),)
-                ],
-            ),
-          )
+                onPressed: () => loginFunction(context),
+                child: Text("SIGN IN"),
+              ),
+            ],
           ),
-      );
+        ),
+      ),
+    );
   }
 }
