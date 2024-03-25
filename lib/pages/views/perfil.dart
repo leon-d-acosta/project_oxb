@@ -80,14 +80,33 @@ class _PerfilViewState extends State<PerfilView> {
                           ],
                         ),
 
-                        Text(snap[0]['morada'], style: TextStyle(color: Colors.white),),
-                        ElevatedButton(onPressed: ChangeMorada, child: Icon(Icons.edit)),
-
-                        Text(snap[0]['localidade'], style: TextStyle(color: Colors.white),),
-                        ElevatedButton(onPressed: ChangeLocalidade, child: Icon(Icons.edit)),
-
-                        Text(snap[0]['codigo_postal'], style: TextStyle(color: Colors.white),),
-                        ElevatedButton(onPressed: ChangeCodigoPostal, child: Icon(Icons.edit)),
+                        Row(
+                          children: [
+                            Text(snap[0]['morada'], style: TextStyle(color: Colors.white),),
+                            ElevatedButton(onPressed: ChangeMorada, child: Icon(Icons.edit)),
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            Text(snap[0]['localidade'], style: TextStyle(color: Colors.white),),
+                            ElevatedButton(onPressed: ChangeLocalidade,child: Icon(Icons.edit), ),                            
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            Text(snap[0]['codigo_postal'], style: TextStyle(color: Colors.white),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                              IconButton(
+                                onPressed: ChangeCodigoPostal, 
+                                alignment: Alignment.bottomRight,
+                                icon: Icon(Icons.edit),
+                                ),
+                              ]
+                            )
+                          ]
+                        ),
                       ],
                     )
                   ],
