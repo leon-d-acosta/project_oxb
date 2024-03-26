@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -36,7 +38,7 @@ class _ChangeNomeAlertState extends State<ChangeNomeAlert> {
     final response = await http.post(
       url,
       body: {
-        'nome': nomeController.text,
+        'user_nome': nomeController.text,
       },
     );
     
@@ -71,7 +73,7 @@ class _ChangeNomeAlertState extends State<ChangeNomeAlert> {
     return AlertDialog(
       backgroundColor: Colors.grey[200],
       content: Container(
-        height: 175,
+        height: 250,
         padding: const EdgeInsets.all(10),
         child: FutureBuilder(
           future: _getData(),
@@ -94,7 +96,7 @@ class _ChangeNomeAlertState extends State<ChangeNomeAlert> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Muestra el nombre actual obtenido de los datos
-                  Text(snap[0]['user_nome'], style: TextStyle(color: Colors.black)),
+                  Text("nome atual: " + snap[0]['user_nome'], style: TextStyle(color: Colors.black)),
                   // Campo de texto para el nuevo nombre
                   TextField(
                     controller: nomeController,
@@ -122,6 +124,7 @@ class _ChangeNomeAlertState extends State<ChangeNomeAlert> {
                       ),
                     ),
                   ),
+                  Text("Para ver los cambios debes reiniciar la aplicacion", style: TextStyle(color:  Colors.red),),
                 ],
               );
             } else {

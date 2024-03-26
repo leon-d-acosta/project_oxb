@@ -1,9 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project1/pages/homepage.dart';
 import 'package:project1/pages/properties/register_button.dart';
+import 'package:project1/pages/views/forgot.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key});
@@ -11,16 +14,15 @@ class Login extends StatelessWidget {
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
-  void forgotButton() {}
+  Future<void> forgotButton(BuildContext context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPage()));
+  }
 
   Future<void> loginFunction(BuildContext context) async {
-    print(emailController.text);
-    print(passController.text);
-
     // Verificar si los campos están vacíos
     if (emailController.text.isEmpty || passController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Datos insuficientes'),
+        content: const Text('Datos insuficientes'),
       ));
       return; // Salir de la función si faltan datos
     }
@@ -130,7 +132,7 @@ class Login extends StatelessWidget {
               // FORGOT PASS
               SizedBox(height: 25),
               RegisterButton(
-                onTap: forgotButton,
+                onTap: ()=>forgotButton(context),
               ),
               // SIGN IN
               SizedBox(height: 20),
