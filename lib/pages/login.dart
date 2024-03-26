@@ -123,7 +123,7 @@ class Login extends StatelessWidget {
                     icon: Icon(Icons.lock),
                     border: InputBorder.none,
                     filled: true,
-                    hintText: "pass",
+                    hintText: "password",
                   ),
                 ),
               ),

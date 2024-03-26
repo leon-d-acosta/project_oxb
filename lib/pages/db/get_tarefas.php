@@ -1,27 +1,27 @@
 <?php
 require("db.php");
 
-$select = "SELECT * FROM tarefas INNER JOIN user ON tarefas.user_id = user.user_id";
+$query_getTarefas = "SELECT * FROM tarefas";
 
-$statement = $connection->prepare($select);
-$statement->execute();
+$statement_getTarefas = $connection->prepare($query_getTarefas);
+$statement_getTarefas->execute();
 
-$array = array();
+$array_getTarefas = array();
 
-while($resultsFrom = $statement -> fetch()){
+while($results_getTarefas = $statement_getTarefas -> fetch()){
     array_push(
-        $array, array(
-            'nome' => $resultsFrom['nome'],//ERROR ACA, MUSTRA EL NOMBRE DE LA TABLA USER, DEBERIA MOSTRA EL NOMBRE DE LA TABLA TAREFAS --------------OJOOOOOO-------------
-            'rota' => $resultsFrom['rota'],
-            'carro' => $resultsFrom['carro'],
-            'motorista' => $resultsFrom['motorista'],
-            'data' => $resultsFrom['data'],
-            'estado' => $resultsFrom['estado'],
-            'observacoes' => $resultsFrom['observacoes'],
-            'id_tarefa' => $resultsFrom['id_tarefa'],
-            'user_id' => $resultsFrom['user_id']
+        $array_getTarefas, array(
+            'tarefa_nome' => $results_getTarefas['tarefa_nome'],
+            'rota' => $results_getTarefas['rota'],
+            'carro' => $results_getTarefas['carro'],
+            'motorista' => $results_getTarefas['motorista'],
+            'data' => $results_getTarefas['data'],
+            'estado' => $results_getTarefas['estado'],
+            'observacoes' => $results_getTarefas['observacoes'],
+            'id_tarefa' => $results_getTarefas['id_tarefa'],
+            'user_id' => $results_getTarefas['user_id']
         )
-        );
+    );
 };
-echo json_encode($array);
+echo json_encode($array_getTarefas);
 

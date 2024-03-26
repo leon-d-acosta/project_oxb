@@ -3,7 +3,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:project1/pages/changes_perfil/changeNome.dart';
 
 class PerfilView extends StatefulWidget {
   const PerfilView({Key? key}) : super(key: key);
@@ -14,7 +16,11 @@ class PerfilView extends StatefulWidget {
 
 class _PerfilViewState extends State<PerfilView> {
 
-  void ChangeNome() {
+  void changeNome() {
+    showDialog(
+      context: context, 
+      builder: (context) => ChangeNomeAlert(),
+      );
   }
 
   void ChangeEmail() {
@@ -60,54 +66,171 @@ class _PerfilViewState extends State<PerfilView> {
               List snap = snapshot.data;
               return Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 125),
-                    Icon(Icons.person, color: Colors.white, size: 125,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Text(snap[0]['nome'], style: TextStyle(color: Colors.white),),
-                            ElevatedButton(onPressed: ChangeNome, child: Icon(Icons.edit)),
-                          ]
-                        ),
-
-                        Row(
-                          children: [
-                            Text(snap[0]['email'], style: TextStyle(color: Colors.white, fontSize: 21),),
-                            ElevatedButton(onPressed: ChangeEmail, child: Icon(Icons.edit)),    
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Text(snap[0]['morada'], style: TextStyle(color: Colors.white),),
-                            ElevatedButton(onPressed: ChangeMorada, child: Icon(Icons.edit)),
-                          ]
-                        ),
-                        Row(
-                          children: [
-                            Text(snap[0]['localidade'], style: TextStyle(color: Colors.white),),
-                            ElevatedButton(onPressed: ChangeLocalidade,child: Icon(Icons.edit), ),                            
-                          ]
-                        ),
-                        Row(
-                          children: [
-                            Text(snap[0]['codigo_postal'], style: TextStyle(color: Colors.white),),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                    Icon(Icons.person, color: colors.secondaryContainer, size: 125,),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: colors.onSurfaceVariant
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(                           
+                            decoration: BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.black))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                              IconButton(
-                                onPressed: ChangeCodigoPostal, 
-                                alignment: Alignment.bottomRight,
-                                icon: Icon(Icons.edit),
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Text(
+                                    snap[0]['user_nome'], 
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                    ),
                                 ),
+                                GestureDetector(
+                                  onTap: changeNome,
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),             
+                                    child: Icon(
+                                      Icons.edit, 
+                                      color: Colors.white,
+                                      ),
+                                  ),
+                                )
                               ]
-                            )
-                          ]
-                        ),
-                      ],
+                            ),
+                          ),
+                      
+                          Container(                           
+                            decoration: BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.black))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Text(
+                                    snap[0]['email'], 
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                    ),
+                                ),
+                                GestureDetector(
+                                  onTap: ChangeEmail,
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),             
+                                    child: Icon(
+                                      Icons.edit, 
+                                      color: Colors.white,
+                                      ),
+                                  ),
+                                )
+                              ]
+                            ),
+                          ),
+                      
+                          Container(                           
+                            decoration: BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.black))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Text(
+                                    snap[0]['morada'], 
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                    ),
+                                ),
+                                GestureDetector(
+                                  onTap: ChangeMorada,
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),             
+                                    child: Icon(
+                                      Icons.edit, 
+                                      color: Colors.white,
+                                      ),
+                                  ),
+                                )
+                              ]
+                            ),
+                          ),
+                          Container(                           
+                            decoration: BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.black))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Text(
+                                    snap[0]['localidade'], 
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                    ),
+                                ),
+                               GestureDetector(
+                                  onTap: ChangeLocalidade,
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),             
+                                    child: Icon(
+                                      Icons.edit, 
+                                      color: Colors.white,
+                                      ),
+                                  ),
+                                )
+                              ]
+                            ),
+                          ),
+                          Container(                           
+                            decoration: BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.black))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Text(
+                                    snap[0]['codigo_postal'], 
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                    ),
+                                ),
+                                GestureDetector(
+                                  onTap: ChangeCodigoPostal,
+                                  child: Container(
+                                    padding: EdgeInsets.all(20),             
+                                    child: Icon(
+                                      Icons.edit, 
+                                      color: Colors.white,
+                                      ),
+                                  ),
+                                )
+                              ]
+                            ),
+                          ),
+                        ]
+                      ),
                     )
                   ],
                 ),
@@ -118,5 +241,4 @@ class _PerfilViewState extends State<PerfilView> {
       ),
     );
   }
-
 }

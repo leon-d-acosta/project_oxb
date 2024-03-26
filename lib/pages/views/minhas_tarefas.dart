@@ -61,7 +61,7 @@ class _MinhasTarefasViewState extends State<MinhasTarefasView> {
                         children: [
                           const SizedBox(height: 10),
                           Text(
-                            "${snap[index]['nome']}",
+                            "${snap[index]['tarefa_nome']}",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,

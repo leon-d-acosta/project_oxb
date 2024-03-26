@@ -3,27 +3,25 @@ require("db.php");
 
 // Verificar si se enviaron los datos esperados
 if(isset($_POST['email']) && isset($_POST['pass'])) {
-    $email = $_POST["email"];
-    $pass= $_POST["pass"];
+    $email_login = $_POST["email"];
+    $pass_login = $_POST["pass"];
 
     //var_dump($email, $pass);
-    $query = "SELECT * FROM user WHERE email = '$email' AND pass = '$pass'";
-    $statement = $connection->prepare($query);
-    $statement->execute();
+    $query_login = "SELECT * FROM user WHERE email = '$email_login' AND pass = '$pass_login'";
+    $statement_login = $connection->prepare($query_login);
+    $statement_login->execute();
 
-    //var_dump($query);
-
-    if($user = $statement->fetch()) {
+    if($user_login = $statement_login->fetch()) {
             echo json_encode(
                 array(
                     'success' => true,
                     'user' => array(
-                        'user_id' => $user['user_id'],
-                        'nome' => $user['nome'],
-                        'email' => $user['email'],
-                        'morada' => $user['morada'],
-                        'localidade' => $user['localidade'],
-                        'codigo_postal' => $user['codigo_postal']
+                        'user_id' => $user_login['user_id'],
+                        'user_nome' => $user_login['user_nome'],
+                        'email' => $user_login['email'],
+                        'morada' => $user_login['morada'],
+                        'localidade' => $user_login['localidade'],
+                        'codigo_postal' => $user_login['codigo_postal']
                     )
                 ),
             );

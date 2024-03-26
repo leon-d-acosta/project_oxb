@@ -1,25 +1,23 @@
 <?php
 require("db.php");
 
-$query = "SELECT * FROM user INNER JOIN tarefas ON user.user_id = tarefas.user_id";
+$query_perfil = "SELECT * FROM user";
 
-$statement = $connection->prepare($query);
-$statement->execute();
+$statement_perfil = $connection->prepare($query_perfil);
+$statement_perfil->execute();
 
-$array = array();
+$array_perfil = array();
 
-//var_dump($query);
-
-while($results = $statement->fetch()) {
+while($results_perfil = $statement_perfil->fetch()) {
     array_push(
-        $array, array(
-                'user_id' => $results['user_id'],
-                'nome' => $results['nome'],
-                'email' => $results['email'],
-                'morada' => $results['morada'],
-                'localidade' => $results['localidade'],
-                'codigo_postal' => $results['codigo_postal']
+        $array_perfil, array(
+            'user_id' => $results_perfil['user_id'],
+            'user_nome' => $results_perfil['user_nome'],
+            'email' => $results_perfil['email'],
+            'morada' => $results_perfil['morada'],
+            'localidade' => $results_perfil['localidade'],
+            'codigo_postal' => $results_perfil['codigo_postal']
         ),
     );
 }
-echo json_encode($array);
+echo json_encode($array_perfil);
