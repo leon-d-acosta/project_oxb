@@ -27,7 +27,7 @@ class Login extends StatelessWidget {
       return; // Salir de la función si faltan datos
     }
 
-    var url = Uri.parse('http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/login.php');
+    var url = Uri.parse('http://192.168.1.110/xampp/project_oxb-2/project1/lib/pages/db/login.php');
     final response = await http.post(
       url,
       body: {
@@ -35,7 +35,6 @@ class Login extends StatelessWidget {
         'pass': passController.text,
       },
     );
-
     if (response.statusCode == 200) {
       var decodedData;
       try {
@@ -73,9 +72,9 @@ class Login extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // ICONO
-              SizedBox(height: 60),
               Icon(Icons.account_circle_rounded, size: 150, color: colors.secondaryContainer),
               // LOGIN TEXT
               SizedBox(height: 15),

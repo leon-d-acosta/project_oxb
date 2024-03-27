@@ -13,7 +13,7 @@ class MinhasTarefasView extends StatefulWidget {
 
 class _MinhasTarefasViewState extends State<MinhasTarefasView> {
   Future<dynamic> _getMethod() async {
-    var url = Uri.parse('http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/get_tarefas.php');
+    var url = Uri.parse('http://192.168.1.110/xampp/project_oxb-2/lib/pages/db/get_tarefas.php');
     var response = await http.get(url);
     var responseBody = json.decode(response.body);
     return responseBody;

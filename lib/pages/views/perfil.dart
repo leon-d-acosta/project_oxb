@@ -36,7 +36,7 @@ class _PerfilViewState extends State<PerfilView> {
   }
 
   Future<dynamic> _getPerfil() async {
-    var url = Uri.parse('http://10.0.0.52/xampp/project_oxb-2/lib/pages/db/perfil.php');
+    var url = Uri.parse('http://192.168.1.110/xampp/project_oxb-2/lib/pages/db/perfil.php');
     var response = await http.get(url);
     var responseBody = json.decode(response.body);
     return responseBody;
