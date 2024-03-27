@@ -57,9 +57,9 @@ class _MinhasTarefasViewState extends State<MinhasTarefasView> {
                     height: 400,
                     child: Center(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(height: 10),
                           Text(
                             "${snap[index]['tarefa_nome']}",
                             style: TextStyle(

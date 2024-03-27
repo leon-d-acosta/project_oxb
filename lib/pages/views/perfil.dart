@@ -2,10 +2,12 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:project1/pages/changes_perfil/changeNome.dart';
+import 'package:project1/pages/login.dart';
 
 class PerfilView extends StatefulWidget {
   const PerfilView({Key? key}) : super(key: key);
@@ -33,6 +35,10 @@ class _PerfilViewState extends State<PerfilView> {
   }
 
   void ChangeCodigoPostal() {
+  }
+
+  void Logout() {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
   }
 
   Future<dynamic> _getPerfil() async {
@@ -75,12 +81,10 @@ class _PerfilViewState extends State<PerfilView> {
                         color: colors.onSurfaceVariant
                       ),
                       child: Column(
+                        
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(                           
-                            decoration: BoxDecoration(
-                              border: Border(top: BorderSide(color: Colors.black))
-                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -229,6 +233,39 @@ class _PerfilViewState extends State<PerfilView> {
                               ]
                             ),
                           ),
+
+                          GestureDetector(
+                            onTap: Logout,
+                            child: Container(                           
+                              decoration: BoxDecoration(
+                                border: Border(top: BorderSide(color: Colors.black))
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(20),
+                                    child: Center(
+                                      child: Text(
+                                        "LOGOUT", 
+                                        style: TextStyle(
+                                          color: Colors.redAccent,
+                                          fontSize: 18,
+                                        ),
+                                        ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(20),             
+                                    child: Icon(
+                                      Icons.logout, 
+                                      color: Colors.redAccent,
+                                      ),
+                                  )
+                                ]
+                              ),
+                            ),
+                          ),
                         ]
                       ),
                     )
@@ -241,4 +278,6 @@ class _PerfilViewState extends State<PerfilView> {
       ),
     );
   }
+
+  
 }

@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
